@@ -1,9 +1,9 @@
-7e35e50e65fbe2cea78ed1f55a2ad855 *DESCRIPTION
+62597322954ff84d6d1dd065cfdaa99c *DESCRIPTION
 0dcc72e8b8541d0518394b9f2530d10f *LICENSE
-6f2e90c20d4d4e52be6b9cc2eaced518 *NAMESPACE
-9f70dcc9a8f599930b7ed3ab89f0282e *NEWS.md
-c3b18a14010c0983a5a94130fe2d364b *R/as-sf.R
-421eb37b63b819682b9162972b56801d *R/as-sp.R
+dfb5b7cf68ccc3c3a3610df9a59491c8 *NAMESPACE
+90e569069253541d31f9bb04a0ad78cd *NEWS.md
+0d22dc090c76e5d30931b852a50f2904 *R/as-sf.R
+39802cebdf47a51e1ff10ae0aa430cf1 *R/as-sp.R
 239559ab59405c0b41d4756fc2d642a1 *R/collapse-properties.R
 d54afdd92fc2ee8ee2d22f38c7946134 *R/costing-models.R
 ef346822eda331f66137a704180b7b6a *R/data.R
@@ -23,7 +23,7 @@ d19d10a7f716fc8cb54bb0639dd0584d *R/mz-search-main.R
 7a2b35708622e2a4efa57d268bfe2d7a *R/mz-tile-coordinates.R
 de62e4f1705639cbf306807d70b1f0d2 *R/print-mapzen-geo-list.R
 e205aabe16091cdb183412e50897cf4d *R/print-vector-tiles.R
-0dcaa7566b08f93019417024c01fe56b *R/providers.R
+6bc35bae86d660f34a75a1a95afb29be *R/providers.R
 89207190d8dd062fba6f42ecd2bcd947 *R/rmapzen.R
 1ae5387d6546847e57c7df5f0663b4f8 *R/string-array.R
 162c943524886629b9b4268f0c97b8b1 *R/structured-search.R

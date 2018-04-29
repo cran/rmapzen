@@ -1,7 +1,7 @@
 Package: rmapzen
 Type: Package
 Title: Client for 'Mapzen' and Related Map APIs
-Version: 0.3.4
+Version: 0.3.5
 Authors@R: c(
     person("Tarak", "Shah", email = "tarak_shah@berkeley.edu", role = c("aut", "cre")),
     person("Daniel","Possenriede", role = "ctb"))
@@ -16,14 +16,14 @@ License: MIT + file LICENSE
 LazyData: TRUE
 Depends: R (>= 2.10)
 Imports: tibble, httr, jsonlite, maps, dplyr, assertthat, geojsonio,
-        tidyr, purrr, sp, rgdal, digest, maptools, sf
+        tidyr, purrr, sp, rgdal, digest, maptools, sf (>= 0.6-2)
 RoxygenNote: 6.0.1
 Suggests: testthat, covr
 URL: https://tarakc02.github.io/rmapzen/
 BugReports: https://github.com/tarakc02/rmapzen/issues
 NeedsCompilation: no
-Packaged: 2018-04-10 17:33:35 UTC; tarak
+Packaged: 2018-04-29 16:10:05 UTC; tarak
 Author: Tarak Shah [aut, cre],
   Daniel Possenriede [ctb]
 Repository: CRAN
-Date/Publication: 2018-04-10 21:48:23 UTC
+Date/Publication: 2018-04-29 16:35:50 UTC
