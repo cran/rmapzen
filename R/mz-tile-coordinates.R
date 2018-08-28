@@ -1,3 +1,14 @@
+deg2num <- function(pt, zoom){
+    # http://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#R
+    lat_deg <- pt[["lat"]]
+    lon_deg <- pt[["lon"]]
+    lat_rad <- lat_deg * pi /180
+    n <- 2.0 ^ zoom
+    xtile <- floor((lon_deg + 180.0) / 360.0 * n)
+    ytile = floor((1.0 - log(tan(lat_rad) + (1 / cos(lat_rad))) / pi) / 2.0 * n)
+    return( c(xtile, ytile))
+}
+
 #' Specify tile coordinates
 #'
 #' \code{\link{mz_vector_tiles}} requires tile coordinates or some other
@@ -39,7 +50,7 @@
 #' @name mz_tile_coordinates
 #' @export
 mz_tile_coordinates <- function(x, y, z) {
-    assert_that(is.numeric(x), is.numeric(y), is.number(z))
+    assert_that(is.numeric(x), is.numeric(y), is.count(z))
     x <- seq(from = min(x), to = max(x), by = 1)
     y <- seq(from = min(y), to = max(y), by = 1)
 
@@ -63,16 +74,41 @@ as.mz_tile_coordinates <- function(obj, ...) UseMethod("as.mz_tile_coordinates")
 #' @export
 as.mz_tile_coordinates.mz_tile_coordinates <- function(obj, ...) obj
 
+validate_dims <- function(height, width, zoom) {
+    # default
+    if (is.null(height) && is.null(width) && is.null(zoom))
+        return(list(height = 375, width = 500, z = NULL))
+
+    if (!is.null(height) && !is.null(width) && !is.null(zoom))
+        stop("`height`, `width`, and `z` cannot all be non-NULL.",
+             call. = FALSE)
+
+    if (!is.null(zoom)) {
+        if (!is.null(height))
+            warning("`height` will be ignored because `z` was provided.")
+        if (!is.null(width))
+            warning("`width` will be ignored because `z` was provided.")
+        return(list(height = NULL, width = NULL, z = zoom))
+    }
+
+    if (is.null(height) || is.null(width))
+        stop("`height` and `width` must both be non-NULL.", call. = FALSE)
+
+    list(height = height, width = width, z = NULL)
+}
+
 #' @rdname mz_tile_coordinates
 #' @export
-as.mz_tile_coordinates.mz_bbox <- function(obj, ..., height = 375, width = 500) {
+as.mz_tile_coordinates.mz_bbox <- function(obj, ..., z = NULL,
+                                           height = NULL, width = NULL) {
     # given a bounding box defined by bottom left and top right corners,
     # convert to vector tile coordinates (x, y, zoom)
+    dims <- validate_dims(height, width, zoom = z)
 
     # http://stackoverflow.com/a/13274361
     getBoundsZoomLevel <- function(bounds, mapDim) {
-        WORLD_DIM = list( height = 256, width= 256 )
-        ZOOM_MAX = 20;
+        WORLD_DIM <- list( height = 256, width= 256 )
+        ZOOM_MAX <- 20;
 
         latRad <- function(lat) {
             sin = sin(lat * pi / 180)
@@ -92,24 +128,15 @@ as.mz_tile_coordinates.mz_bbox <- function(obj, ..., height = 375, width = 500) 
         else lngFraction <- lngDiff
         lngFraction <- lngFraction / 360
 
-        latZoom = zoom(mapDim$height, WORLD_DIM$height, latFraction)
-        lngZoom = zoom(mapDim$width, WORLD_DIM$width, lngFraction)
+        latZoom <- zoom(mapDim$height, WORLD_DIM$height, latFraction)
+        lngZoom <- zoom(mapDim$width, WORLD_DIM$width, lngFraction)
 
         pmin(latZoom, lngZoom, ZOOM_MAX)
     }
-
-    # http://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#R
-    deg2num <- function(pt, zoom){
-        lat_deg <- pt[["lat"]]
-        lon_deg <- pt[["lon"]]
-        lat_rad <- lat_deg * pi /180
-        n <- 2.0 ^ zoom
-        xtile <- floor((lon_deg + 180.0) / 360.0 * n)
-        ytile = floor((1.0 - log(tan(lat_rad) + (1 / cos(lat_rad))) / pi) / 2.0 * n)
-        return( c(xtile, ytile))
-    }
-
-    zoom <- getBoundsZoomLevel(obj, list(height = height, width = width))
+    if (!is.null(dims$z))
+        zoom <- dims$z
+    else zoom <- getBoundsZoomLevel(obj, list(height = dims$height,
+                                              width = dims$width))
 
     # tile for bottom left corner:
     ll <- deg2num(mz_location(
@@ -127,4 +154,21 @@ as.mz_tile_coordinates.mz_bbox <- function(obj, ..., height = 375, width = 500) 
     ys <- unique(c(ll[2], ur[2]))
 
     mz_tile_coordinates(x = xs, y = ys, z = zoom)
+}
+
+#' @rdname mz_tile_coordinates
+#' @export
+as.mz_tile_coordinates.mz_location <- function(obj, ...,
+                                               z = 15L) {
+    assert_that(is.count(z))
+    xy_coords <- deg2num(obj, zoom = z)
+    mz_tile_coordinates(x = xy_coords[1], y = xy_coords[2], z = z)
+}
+
+#' @rdname mz_tile_coordinates
+#' @export
+as.mz_tile_coordinates.mz_geocode_result <- function(obj, ...,
+                                                     z = 15L) {
+    obj <- as.mz_location(obj)
+    as.mz_tile_coordinates.mz_location(obj, z = z)
 }

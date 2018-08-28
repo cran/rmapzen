@@ -1,4 +1,5 @@
 context("specifying tile coordinates")
+
 test_that("tile coordinates are generated for contiguous rectangular range", {
     ex1 <- mz_tile_coordinates(1:5, 4, 12)
     # should be one element per x for each y
@@ -22,7 +23,7 @@ test_that("tile coordinates are generated for contiguous rectangular range", {
     expect_length(zs, 1L)
 })
 
-test_that("bounding box is correctly converted to tile coordinates", {
+test_that("error when ambiguous arguments are provided", {
     rect <- mz_rect(
         min_lon = -122.3163,
         min_lat = 37.86393,
@@ -30,23 +31,60 @@ test_that("bounding box is correctly converted to tile coordinates", {
         max_lat = 37.86912
     )
 
-    marinalon <- -122.3151
-    marinalat <- 37.86613
-    tile_coords <- as.mz_tile_coordinates(rect)
-    z <- tile_coords[[1]]$z
+    expect_error(
+        as.mz_tile_coordinates(
+            rect,
+            height = 375, width = 500,
+            z = 17),
+        "height.+width.+z")
+
+    expect_error(
+        as.mz_tile_coordinates(
+            rect,
+            height = 375),
+        "height.+width")
+
+    expect_warning(
+        as.mz_tile_coordinates(
+            rect,
+            width = 500,
+            z = 17),
+        "width.+ignored")
+
+
+})
+
+test_that("bounding box is correctly converted to tile coordinates", {
+    marina_rect <- mz_rect(
+        min_lon = -122.3163,
+        min_lat = 37.86393,
+        max_lon = -122.3093,
+        max_lat = 37.86912
+    )
 
     # at zoom16, this tile should be there:
     # based on http://tools.geofabrik.de/calc/#type=geofabrik_standard&bbox=-122.321657,37.862023,-122.305585,37.870408&grid=1
-    x <- 10501
-    y <- 25310
+    expect_tiles_contain_xy(
+        as.mz_tile_coordinates(marina_rect),
+        x = 10501, y = 25310
+    )
 
-    x <- as.integer(x * 2^(z - 16))
-    y <- as.integer(y * 2^(z - 16))
+    # for zoom 10, this is the tile containing the marina rectangle
+    expect_tiles_contain_xy(
+        as.mz_tile_coordinates(marina_rect, z = 10),
+        x = 164, y = 395
+    )
+})
 
-    # make sure the coord is in the set:
-    xs <- vapply(tile_coords, function(.) .[["x"]], numeric(1))
-    ys <- vapply(tile_coords, function(.) .[["y"]], numeric(1))
+test_that("point + zoom is correctly converted to tile coordinates", {
+    marinalon <- -122.319080
+    marinalat <-   37.873242
 
-    expect_true(x %in% xs)
-    expect_true(y %in% ys)
+    marina <- mz_location(lat = marinalat, lon = marinalon)
+    # based on: http://tools.geofabrik.de/calc/#type=geofabrik_standard&bbox=-122.321657,37.862023,-122.305585,37.870408&grid=1
+    expect_tiles_contain_xy(
+        as.mz_tile_coordinates(marina, z = 15),
+        x = 5250,
+        y = 12654
+    )
 })

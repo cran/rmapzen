@@ -5,6 +5,8 @@
 \alias{as.mz_tile_coordinates}
 \alias{as.mz_tile_coordinates.mz_tile_coordinates}
 \alias{as.mz_tile_coordinates.mz_bbox}
+\alias{as.mz_tile_coordinates.mz_location}
+\alias{as.mz_tile_coordinates.mz_geocode_result}
 \title{Specify tile coordinates}
 \usage{
 mz_tile_coordinates(x, y, z)
@@ -13,8 +15,12 @@ as.mz_tile_coordinates(obj, ...)
 
 \method{as.mz_tile_coordinates}{mz_tile_coordinates}(obj, ...)
 
-\method{as.mz_tile_coordinates}{mz_bbox}(obj, ..., height = 375,
-  width = 500)
+\method{as.mz_tile_coordinates}{mz_bbox}(obj, ..., z = NULL, height = NULL,
+  width = NULL)
+
+\method{as.mz_tile_coordinates}{mz_location}(obj, ..., z = 15L)
+
+\method{as.mz_tile_coordinates}{mz_geocode_result}(obj, ..., z = 15L)
 }
 \arguments{
 \item{x}{integer vector of x-coordinates}
