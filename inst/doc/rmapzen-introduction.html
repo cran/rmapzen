@@ -12,7 +12,7 @@
 
 <meta name="author" content="Tarak Shah" />
 
-<meta name="date" content="2018-08-28" />
+<meta name="date" content="2018-10-07" />
 
 <title>Introduction to rmapzen</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Introduction to rmapzen</h1>
 <h4 class="author"><em>Tarak Shah</em></h4>
-<h4 class="date"><em>2018-08-28</em></h4>
+<h4 class="date"><em>2018-10-07</em></h4>
 
 
 
@@ -122,24 +122,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="co">#&gt; 1   -122.    37.7   -122.    37.8</span>
 <span class="kw">as.data.frame</span>(oakland_public)
 <span class="co">#&gt; # A tibble: 25 x 26</span>
-<span class="co">#&gt;    id     gid      layer source  source_id name     housenumber confidence</span>
-<span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;            &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 way:1… openstr… venue openst… way:1256… Oakland… 5205             0.926</span>
-<span class="co">#&gt;  2 way:4… openstr… venue openst… way:4325… Oakland… &lt;NA&gt;             0.926</span>
-<span class="co">#&gt;  3 way:3… openstr… venue openst… way:3697… Lakevie… &lt;NA&gt;             0.664</span>
-<span class="co">#&gt;  4 53528… geoname… venue geonam… 5352843   Golden … &lt;NA&gt;             0.663</span>
-<span class="co">#&gt;  5 node:… openstr… venue openst… node:368… Brookfi… &lt;NA&gt;             0.663</span>
-<span class="co">#&gt;  6 way:4… openstr… venue openst… way:4391… West Oa… 1801             0.663</span>
-<span class="co">#&gt;  7 node:… openstr… venue openst… node:368… Elmhurs… &lt;NA&gt;             0.663</span>
-<span class="co">#&gt;  8 node:… openstr… venue openst… node:368… Montcla… &lt;NA&gt;             0.663</span>
-<span class="co">#&gt;  9 way:2… openstr… venue openst… way:2837… Main Br… 125              0.663</span>
-<span class="co">#&gt; 10 node:… openstr… venue openst… node:368… Latin A… &lt;NA&gt;             0.663</span>
-<span class="co">#&gt; # ... with 15 more rows, and 18 more variables: accuracy &lt;chr&gt;,</span>
-<span class="co">#&gt; #   country &lt;chr&gt;, country_gid &lt;chr&gt;, country_a &lt;chr&gt;, region &lt;chr&gt;,</span>
-<span class="co">#&gt; #   region_gid &lt;chr&gt;, region_a &lt;chr&gt;, county &lt;chr&gt;, county_gid &lt;chr&gt;,</span>
-<span class="co">#&gt; #   locality &lt;chr&gt;, locality_gid &lt;chr&gt;, neighbourhood &lt;chr&gt;,</span>
-<span class="co">#&gt; #   neighbourhood_gid &lt;chr&gt;, label &lt;chr&gt;, street &lt;chr&gt;, postalcode &lt;chr&gt;,</span>
-<span class="co">#&gt; #   lon &lt;dbl&gt;, lat &lt;dbl&gt;</span></code></pre></div>
+<span class="co">#&gt;    id    gid   layer source source_id name  housenumber confidence accuracy</span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;   </span>
+<span class="co">#&gt;  1 way:… open… venue opens… way:1256… Oakl… 5205             0.926 point   </span>
+<span class="co">#&gt;  2 way:… open… venue opens… way:4325… Oakl… &lt;NA&gt;             0.926 point   </span>
+<span class="co">#&gt;  3 way:… open… venue opens… way:3697… Lake… &lt;NA&gt;             0.664 point   </span>
+<span class="co">#&gt;  4 5352… geon… venue geona… 5352843   Gold… &lt;NA&gt;             0.663 point   </span>
+<span class="co">#&gt;  5 node… open… venue opens… node:368… Broo… &lt;NA&gt;             0.663 point   </span>
+<span class="co">#&gt;  6 way:… open… venue opens… way:4391… West… 1801             0.663 point   </span>
+<span class="co">#&gt;  7 node… open… venue opens… node:368… Elmh… &lt;NA&gt;             0.663 point   </span>
+<span class="co">#&gt;  8 node… open… venue opens… node:368… Mont… &lt;NA&gt;             0.663 point   </span>
+<span class="co">#&gt;  9 way:… open… venue opens… way:2837… Main… 125              0.663 point   </span>
+<span class="co">#&gt; 10 node… open… venue opens… node:368… Lati… &lt;NA&gt;             0.663 point   </span>
+<span class="co">#&gt; # ... with 15 more rows, and 17 more variables: country &lt;chr&gt;,</span>
+<span class="co">#&gt; #   country_gid &lt;chr&gt;, country_a &lt;chr&gt;, region &lt;chr&gt;, region_gid &lt;chr&gt;,</span>
+<span class="co">#&gt; #   region_a &lt;chr&gt;, county &lt;chr&gt;, county_gid &lt;chr&gt;, locality &lt;chr&gt;,</span>
+<span class="co">#&gt; #   locality_gid &lt;chr&gt;, neighbourhood &lt;chr&gt;, neighbourhood_gid &lt;chr&gt;,</span>
+<span class="co">#&gt; #   label &lt;chr&gt;, street &lt;chr&gt;, postalcode &lt;chr&gt;, lon &lt;dbl&gt;, lat &lt;dbl&gt;</span></code></pre></div>
 <p>Search can, optionally, be constrained to a particular country, data layer, boundary rectangle, or boundary circle. Furthermore, search can prioritize results near a given “focus” point. See <code>?mz_search</code>.</p>
 </div>
 <div id="vector-tile-service" class="section level2">
@@ -167,18 +166,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="co">#&gt; epsg (SRID):    4326</span>
 <span class="co">#&gt; proj4string:    +proj=longlat +datum=WGS84 +no_defs</span>
 <span class="co">#&gt; # A tibble: 30 x 12</span>
-<span class="co">#&gt;    kind   protect_class area  operator  source min_zoom tier  osm_relation</span>
-<span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;       </span>
-<span class="co">#&gt;  1 natio… 2             1377… United S… opens… 5.58     1     TRUE        </span>
-<span class="co">#&gt;  2 natio… 2             2035… United S… opens… 5.29     1     TRUE        </span>
-<span class="co">#&gt;  3 natio… 2             2132… United S… opens… 3.6      1     TRUE        </span>
-<span class="co">#&gt;  4 natio… 2             2543… United S… opens… 5.13     1     TRUE        </span>
-<span class="co">#&gt;  5 natio… 2             2552… United S… opens… 5.13     1     TRUE        </span>
-<span class="co">#&gt;  6 natio… 2             2740… United S… opens… 5.08     1     TRUE        </span>
-<span class="co">#&gt;  7 natio… 2             2812… United S… opens… 5.06     1     TRUE        </span>
-<span class="co">#&gt;  8 natio… 2             4671… United S… opens… 4.7      1     TRUE        </span>
-<span class="co">#&gt;  9 natio… 2             4858… United S… opens… 4.67     1     TRUE        </span>
-<span class="co">#&gt; 10 natio… 2             7790… United S… opens… 4.33     1     TRUE        </span>
+<span class="co">#&gt;    kind  protect_class area  operator source min_zoom tier  osm_relation</span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;       </span>
+<span class="co">#&gt;  1 nati… 2             1377… United … opens… 5.58     1     TRUE        </span>
+<span class="co">#&gt;  2 nati… 2             2035… United … opens… 5.29     1     TRUE        </span>
+<span class="co">#&gt;  3 nati… 2             2132… United … opens… 3.6      1     TRUE        </span>
+<span class="co">#&gt;  4 nati… 2             2543… United … opens… 5.13     1     TRUE        </span>
+<span class="co">#&gt;  5 nati… 2             2552… United … opens… 5.13     1     TRUE        </span>
+<span class="co">#&gt;  6 nati… 2             2740… United … opens… 5.08     1     TRUE        </span>
+<span class="co">#&gt;  7 nati… 2             2812… United … opens… 5.06     1     TRUE        </span>
+<span class="co">#&gt;  8 nati… 2             4671… United … opens… 4.7      1     TRUE        </span>
+<span class="co">#&gt;  9 nati… 2             4858… United … opens… 4.67     1     TRUE        </span>
+<span class="co">#&gt; 10 nati… 2             7790… United … opens… 4.33     1     TRUE        </span>
 <span class="co">#&gt; # ... with 20 more rows, and 4 more variables: name &lt;chr&gt;, id &lt;chr&gt;,</span>
 <span class="co">#&gt; #   name.de &lt;chr&gt;, geometry &lt;POINT [°]&gt;</span></code></pre></div>
 </div>
@@ -196,19 +195,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="co">#&gt; epsg (SRID):    4326</span>
 <span class="co">#&gt; proj4string:    +proj=longlat +datum=WGS84 +no_defs</span>
 <span class="co">#&gt; # A tibble: 25 x 6</span>
-<span class="co">#&gt;    name                        confidence region   locality neighbourhood </span>
-<span class="co">#&gt;    &lt;chr&gt;                            &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;         </span>
-<span class="co">#&gt;  1 Oakland Public Library - T…      0.926 Califor… Oakland  Shafter       </span>
-<span class="co">#&gt;  2 Oakland Public Library - R…      0.926 Califor… Oakland  Rockridge     </span>
-<span class="co">#&gt;  3 Lakeview Branch Oakland Pu…      0.664 Califor… Oakland  &lt;NA&gt;          </span>
-<span class="co">#&gt;  4 Golden Gate Branch Oakland…      0.663 Califor… Oakland  Gaskill       </span>
-<span class="co">#&gt;  5 Brookfield Village Branch …      0.663 Califor… Oakland  South Stonehu…</span>
-<span class="co">#&gt;  6 West Oakland Branch Oaklan…      0.663 Califor… Oakland  Ralph Bunche  </span>
-<span class="co">#&gt;  7 Elmhurst Branch Oakland Pu…      0.663 Califor… Oakland  Webster       </span>
-<span class="co">#&gt;  8 Montclair Branch Oakland P…      0.663 Califor… Oakland  Montclair     </span>
-<span class="co">#&gt;  9 Main Branch Oakland Public…      0.663 Califor… Oakland  Civic Center  </span>
-<span class="co">#&gt; 10 Latin American Branch Oakl…      0.663 Califor… Oakland  St. Elizabeth </span>
-<span class="co">#&gt; # ... with 15 more rows, and 1 more variable: geometry &lt;POINT [°]&gt;</span></code></pre></div>
+<span class="co">#&gt;    name  confidence region locality neighbourho…                  geometry</span>
+<span class="co">#&gt;    &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;                      &lt;POINT [°]&gt;</span>
+<span class="co">#&gt;  1 Oakl…      0.926 Calif… Oakland  Shafter           (-122.2625 37.83824)</span>
+<span class="co">#&gt;  2 Oakl…      0.926 Calif… Oakland  Rockridge            (-122.2511 37.84)</span>
+<span class="co">#&gt;  3 Lake…      0.664 Calif… Oakland  &lt;NA&gt;               (-122.249 37.80919)</span>
+<span class="co">#&gt;  4 Gold…      0.663 Calif… Oakland  Gaskill           (-122.2822 37.83937)</span>
+<span class="co">#&gt;  5 Broo…      0.663 Calif… Oakland  South Stone…      (-122.1886 37.73742)</span>
+<span class="co">#&gt;  6 West…      0.663 Calif… Oakland  Ralph Bunche      (-122.2854 37.81296)</span>
+<span class="co">#&gt;  7 Elmh…      0.663 Calif… Oakland  Webster           (-122.1749 37.75154)</span>
+<span class="co">#&gt;  8 Mont…      0.663 Calif… Oakland  Montclair         (-122.2141 37.83204)</span>
+<span class="co">#&gt;  9 Main…      0.663 Calif… Oakland  Civic Center      (-122.2638 37.80101)</span>
+<span class="co">#&gt; 10 Lati…      0.663 Calif… Oakland  St. Elizabe…      (-122.2225 37.78354)</span>
+<span class="co">#&gt; # ... with 15 more rows</span></code></pre></div>
 </div>
 <div id="accessor-methods" class="section level2">
 <h2>Accessor methods</h2>

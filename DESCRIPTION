@@ -1,11 +1,11 @@
 Package: rmapzen
 Type: Package
 Title: Client for 'Mapzen' and Related Map APIs
-Version: 0.4.0
+Version: 0.4.1
 Authors@R: c(
-    person("Tarak", "Shah", email = "tarak_shah@berkeley.edu", role = c("aut", "cre")),
+    person("Tarak", "Shah", email = "tarak.shah@gmail.com", role = c("aut", "cre")),
     person("Daniel","Possenriede", role = "ctb"))
-Maintainer: Tarak Shah <tarak_shah@berkeley.edu>
+Maintainer: Tarak Shah <tarak.shah@gmail.com>
 Description: Provides an interface to 'Mapzen'-based APIs (including 
     geocode.earth, Nextzen, and NYC GeoSearch) for geographic search 
     and geocoding, isochrone calculation, and vector data to draw map tiles. 
@@ -17,14 +17,14 @@ LazyData: TRUE
 Depends: R (>= 2.10)
 Imports: tibble, httr, jsonlite, maps, dplyr, assertthat, geojsonio,
         tidyr, purrr, sp, rgdal, digest, maptools, sf (>= 0.6-2)
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 Suggests: testthat, covr, knitr, rmarkdown, rlang
 URL: https://tarakc02.github.io/rmapzen/
 BugReports: https://github.com/tarakc02/rmapzen/issues
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2018-08-28 15:38:10 UTC; tarak
+Packaged: 2018-10-07 19:31:28 UTC; tarak
 Author: Tarak Shah [aut, cre],
   Daniel Possenriede [ctb]
 Repository: CRAN
-Date/Publication: 2018-08-28 16:00:02 UTC
+Date/Publication: 2018-10-07 21:00:02 UTC
