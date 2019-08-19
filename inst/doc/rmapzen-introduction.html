@@ -12,7 +12,7 @@
 
 <meta name="author" content="Tarak Shah" />
 
-<meta name="date" content="2018-10-07" />
+<meta name="date" content="2019-08-19" />
 
 <title>Introduction to rmapzen</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Introduction to rmapzen</h1>
 <h4 class="author"><em>Tarak Shah</em></h4>
-<h4 class="date"><em>2018-10-07</em></h4>
+<h4 class="date"><em>2019-08-19</em></h4>
 
 
 
@@ -134,7 +134,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="co">#&gt;  8 node… open… venue opens… node:368… Mont… &lt;NA&gt;             0.663 point   </span>
 <span class="co">#&gt;  9 way:… open… venue opens… way:2837… Main… 125              0.663 point   </span>
 <span class="co">#&gt; 10 node… open… venue opens… node:368… Lati… &lt;NA&gt;             0.663 point   </span>
-<span class="co">#&gt; # ... with 15 more rows, and 17 more variables: country &lt;chr&gt;,</span>
+<span class="co">#&gt; # … with 15 more rows, and 17 more variables: country &lt;chr&gt;,</span>
 <span class="co">#&gt; #   country_gid &lt;chr&gt;, country_a &lt;chr&gt;, region &lt;chr&gt;, region_gid &lt;chr&gt;,</span>
 <span class="co">#&gt; #   region_a &lt;chr&gt;, county &lt;chr&gt;, county_gid &lt;chr&gt;, locality &lt;chr&gt;,</span>
 <span class="co">#&gt; #   locality_gid &lt;chr&gt;, neighbourhood &lt;chr&gt;, neighbourhood_gid &lt;chr&gt;,</span>
@@ -178,8 +178,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="co">#&gt;  8 nati… 2             4671… United … opens… 4.7      1     TRUE        </span>
 <span class="co">#&gt;  9 nati… 2             4858… United … opens… 4.67     1     TRUE        </span>
 <span class="co">#&gt; 10 nati… 2             7790… United … opens… 4.33     1     TRUE        </span>
-<span class="co">#&gt; # ... with 20 more rows, and 4 more variables: name &lt;chr&gt;, id &lt;chr&gt;,</span>
-<span class="co">#&gt; #   name.de &lt;chr&gt;, geometry &lt;POINT [°]&gt;</span></code></pre></div>
+<span class="co">#&gt; # … with 20 more rows, and 4 more variables: name &lt;chr&gt;, id &lt;chr&gt;,</span>
+<span class="co">#&gt; #   `name:de` &lt;chr&gt;, geometry &lt;POINT [°]&gt;</span></code></pre></div>
 </div>
 <div id="sf-and-spatialdataframe-conversion" class="section level2">
 <h2><code>sf</code> and <code>Spatial*DataFrame</code> conversion</h2>
@@ -195,19 +195,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="co">#&gt; epsg (SRID):    4326</span>
 <span class="co">#&gt; proj4string:    +proj=longlat +datum=WGS84 +no_defs</span>
 <span class="co">#&gt; # A tibble: 25 x 6</span>
-<span class="co">#&gt;    name  confidence region locality neighbourho…                  geometry</span>
-<span class="co">#&gt;    &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;                      &lt;POINT [°]&gt;</span>
-<span class="co">#&gt;  1 Oakl…      0.926 Calif… Oakland  Shafter           (-122.2625 37.83824)</span>
-<span class="co">#&gt;  2 Oakl…      0.926 Calif… Oakland  Rockridge            (-122.2511 37.84)</span>
-<span class="co">#&gt;  3 Lake…      0.664 Calif… Oakland  &lt;NA&gt;               (-122.249 37.80919)</span>
-<span class="co">#&gt;  4 Gold…      0.663 Calif… Oakland  Gaskill           (-122.2822 37.83937)</span>
-<span class="co">#&gt;  5 Broo…      0.663 Calif… Oakland  South Stone…      (-122.1886 37.73742)</span>
-<span class="co">#&gt;  6 West…      0.663 Calif… Oakland  Ralph Bunche      (-122.2854 37.81296)</span>
-<span class="co">#&gt;  7 Elmh…      0.663 Calif… Oakland  Webster           (-122.1749 37.75154)</span>
-<span class="co">#&gt;  8 Mont…      0.663 Calif… Oakland  Montclair         (-122.2141 37.83204)</span>
-<span class="co">#&gt;  9 Main…      0.663 Calif… Oakland  Civic Center      (-122.2638 37.80101)</span>
-<span class="co">#&gt; 10 Lati…      0.663 Calif… Oakland  St. Elizabe…      (-122.2225 37.78354)</span>
-<span class="co">#&gt; # ... with 15 more rows</span></code></pre></div>
+<span class="co">#&gt;    name  confidence region locality neighbourhood                  geometry</span>
+<span class="co">#&gt;    &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;                       &lt;POINT [°]&gt;</span>
+<span class="co">#&gt;  1 Oakl…      0.926 Calif… Oakland  Shafter            (-122.2625 37.83824)</span>
+<span class="co">#&gt;  2 Oakl…      0.926 Calif… Oakland  Rockridge             (-122.2511 37.84)</span>
+<span class="co">#&gt;  3 Lake…      0.664 Calif… Oakland  &lt;NA&gt;                (-122.249 37.80919)</span>
+<span class="co">#&gt;  4 Gold…      0.663 Calif… Oakland  Gaskill            (-122.2822 37.83937)</span>
+<span class="co">#&gt;  5 Broo…      0.663 Calif… Oakland  South Stoneh…      (-122.1886 37.73742)</span>
+<span class="co">#&gt;  6 West…      0.663 Calif… Oakland  Ralph Bunche       (-122.2854 37.81296)</span>
+<span class="co">#&gt;  7 Elmh…      0.663 Calif… Oakland  Webster            (-122.1749 37.75154)</span>
+<span class="co">#&gt;  8 Mont…      0.663 Calif… Oakland  Montclair          (-122.2141 37.83204)</span>
+<span class="co">#&gt;  9 Main…      0.663 Calif… Oakland  Civic Center       (-122.2638 37.80101)</span>
+<span class="co">#&gt; 10 Lati…      0.663 Calif… Oakland  St. Elizabeth      (-122.2225 37.78354)</span>
+<span class="co">#&gt; # … with 15 more rows</span></code></pre></div>
 </div>
 <div id="accessor-methods" class="section level2">
 <h2>Accessor methods</h2>
