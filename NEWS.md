@@ -1,3 +1,6 @@
+# rmapzen 0.4.3
+* fixed for sf switching to s2 backend, see issue #21
+
 # rmapzen 0.4.2
 * added optional `Origin` argument to `mz_vector_tiles`, see issue #17
 * minor modifications to code to avoid using deprecated tidyverse functions
@@ -30,7 +33,7 @@
 * request functions are no longer rate-limited, because Mapzen's service has been updated and only has monthly (not per-second or per-minute) limits
 
 # rmapzen 0.3.1
-* Added support for [structured geocoding](https://mapzen.com/documentation/search/structured-geocoding/)
+* Added support for [structured geocoding](https://github.com/pelias/documentation)
 * Simple print methods for vector tiles and individual vector tile layers
 
 # rmapzen 0.3.0.9007
