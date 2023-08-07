@@ -12,7 +12,7 @@
 
 <meta name="author" content="Tarak Shah" />
 
-<meta name="date" content="2023-03-07" />
+<meta name="date" content="2023-08-07" />
 
 <title>Introduction to rmapzen</title>
 
@@ -121,13 +121,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -333,7 +340,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Introduction to rmapzen</h1>
 <h4 class="author">Tarak Shah</h4>
-<h4 class="date">2023-03-07</h4>
+<h4 class="date">2023-08-07</h4>
 
 
 
@@ -410,24 +417,24 @@ sample dataset <code>oakland_public</code> contains the results of
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#&gt; 1   -122.    37.7   -122.    37.8</span></span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="fu">as.data.frame</span>(oakland_public)</span>
 <span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#&gt; # A tibble: 25 × 26</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt;    id           gid   layer source sourc…¹ name  house…² confi…³ accur…⁴ country</span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  </span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt;  1 way:1256861… open… venue opens… way:12… Oakl… 5205      0.926 point   United…</span></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt;  2 way:43255308 open… venue opens… way:43… Oakl… &lt;NA&gt;      0.926 point   United…</span></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt;  3 way:36977219 open… venue opens… way:36… Lake… &lt;NA&gt;      0.664 point   United…</span></span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt;  4 5352843      geon… venue geona… 5352843 Gold… &lt;NA&gt;      0.663 point   United…</span></span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#&gt;  5 node:368169… open… venue opens… node:3… Broo… &lt;NA&gt;      0.663 point   United…</span></span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt;  6 way:43919891 open… venue opens… way:43… West… 1801      0.663 point   United…</span></span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt;  7 node:368169… open… venue opens… node:3… Elmh… &lt;NA&gt;      0.663 point   United…</span></span>
-<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co">#&gt;  8 node:368169… open… venue opens… node:3… Mont… &lt;NA&gt;      0.663 point   United…</span></span>
-<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#&gt;  9 way:28376124 open… venue opens… way:28… Main… 125       0.663 point   United…</span></span>
-<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#&gt; 10 node:368169… open… venue opens… node:3… Lati… &lt;NA&gt;      0.663 point   United…</span></span>
-<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="co">#&gt; # … with 15 more rows, 16 more variables: country_gid &lt;chr&gt;, country_a &lt;chr&gt;,</span></span>
-<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="co">#&gt; #   region &lt;chr&gt;, region_gid &lt;chr&gt;, region_a &lt;chr&gt;, county &lt;chr&gt;,</span></span>
-<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="co">#&gt; #   county_gid &lt;chr&gt;, locality &lt;chr&gt;, locality_gid &lt;chr&gt;, neighbourhood &lt;chr&gt;,</span></span>
-<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a><span class="co">#&gt; #   neighbourhood_gid &lt;chr&gt;, label &lt;chr&gt;, street &lt;chr&gt;, postalcode &lt;chr&gt;,</span></span>
-<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a><span class="co">#&gt; #   lon &lt;dbl&gt;, lat &lt;dbl&gt;, and abbreviated variable names ¹​source_id,</span></span>
-<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a><span class="co">#&gt; #   ²​housenumber, ³​confidence, ⁴​accuracy</span></span></code></pre></div>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt;    id         gid   layer source source_id name  housenumber confidence accuracy</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;   </span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt;  1 way:12568… open… venue opens… way:1256… Oakl… 5205             0.926 point   </span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt;  2 way:43255… open… venue opens… way:4325… Oakl… &lt;NA&gt;             0.926 point   </span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt;  3 way:36977… open… venue opens… way:3697… Lake… &lt;NA&gt;             0.664 point   </span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt;  4 5352843    geon… venue geona… 5352843   Gold… &lt;NA&gt;             0.663 point   </span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#&gt;  5 node:3681… open… venue opens… node:368… Broo… &lt;NA&gt;             0.663 point   </span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt;  6 way:43919… open… venue opens… way:4391… West… 1801             0.663 point   </span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt;  7 node:3681… open… venue opens… node:368… Elmh… &lt;NA&gt;             0.663 point   </span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co">#&gt;  8 node:3681… open… venue opens… node:368… Mont… &lt;NA&gt;             0.663 point   </span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#&gt;  9 way:28376… open… venue opens… way:2837… Main… 125              0.663 point   </span></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#&gt; 10 node:3681… open… venue opens… node:368… Lati… &lt;NA&gt;             0.663 point   </span></span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="co">#&gt; # ℹ 15 more rows</span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="co">#&gt; # ℹ 17 more variables: country &lt;chr&gt;, country_gid &lt;chr&gt;, country_a &lt;chr&gt;,</span></span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="co">#&gt; #   region &lt;chr&gt;, region_gid &lt;chr&gt;, region_a &lt;chr&gt;, county &lt;chr&gt;,</span></span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a><span class="co">#&gt; #   county_gid &lt;chr&gt;, locality &lt;chr&gt;, locality_gid &lt;chr&gt;, neighbourhood &lt;chr&gt;,</span></span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a><span class="co">#&gt; #   neighbourhood_gid &lt;chr&gt;, label &lt;chr&gt;, street &lt;chr&gt;, postalcode &lt;chr&gt;,</span></span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a><span class="co">#&gt; #   lon &lt;dbl&gt;, lat &lt;dbl&gt;</span></span></code></pre></div>
 <p>Search can, optionally, be constrained to a particular country, data
 layer, boundary rectangle, or boundary circle. Furthermore, search can
 prioritize results near a given “focus” point. See
@@ -458,43 +465,51 @@ states.</p>
 <p>Each element of a vector tile response includes point, line, and/or
 polygon data for an individual map layer, and has class
 <code>mapzen_vector_layer</code>. Like other response types, the
-<code>mapzen_vector_layer</code> can be converted to <code>sf</code> and
-<code>sp</code> objects for further processing, using the generic
-functions <code>as_sf</code> and <code>as_sp</code>.</p>
+<code>mapzen_vector_layer</code> can be converted to <code>sf</code>
+objects for further processing, using the generic function
+<code>as_sf</code></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># points of interest</span></span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">as_sf</span>(ca_tiles<span class="sc">$</span>pois)</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co">#&gt; Registered S3 method overwritten by &#39;geojsonsf&#39;:</span></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co">#&gt;   method        from   </span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#&gt;   print.geojson geojson</span></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">#&gt; Simple feature collection with 30 features and 11 fields</span></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co">#&gt; Geometry type: POINT</span></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">#&gt; Dimension:     XY</span></span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co">#&gt; Bounding box:  xmin: -123.536 ymin: 32.009 xmax: -112.58 ymax: 48.808</span></span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co">#&gt; # A tibble: 30 × 12</span></span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co">#&gt;    kind   prote…¹ area  opera…² name:…³ source min_z…⁴ tier  osm_r…⁵ name  id   </span></span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;</span></span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co">#&gt;  1 natio… 2       1377… United… &lt;NA&gt;    opens… 5.58    1     TRUE    Crat… 5471…</span></span>
-<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co">#&gt;  2 natio… 2       2035… United… &lt;NA&gt;    opens… 5.29    1     TRUE    Moun… 6c47…</span></span>
-<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="co">#&gt;  3 natio… 2       2132… United… Nation… opens… 3.6     1     TRUE    Deat… 4e80…</span></span>
-<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="co">#&gt;  4 natio… 2       2543… United… &lt;NA&gt;    opens… 5.13    1     TRUE    Crat… a710…</span></span>
-<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="co">#&gt;  5 natio… 2       2552… United… Sequoi… opens… 5.13    1     TRUE    Sequ… e7fc…</span></span>
-<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="co">#&gt;  6 natio… 2       2740… United… Nation… opens… 5.08    1     TRUE    Nort… 7bfb…</span></span>
-<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a><span class="co">#&gt;  7 natio… 2       2812… United… Kings-… opens… 5.06    1     TRUE    King… 553d…</span></span>
-<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="co">#&gt;  8 natio… 2       4671… United… Joshua… opens… 4.7     1     TRUE    Josh… 09bc…</span></span>
-<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="co">#&gt;  9 natio… 2       4858… United… Yosemi… opens… 4.67    1     TRUE    Yose… 4815…</span></span>
-<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a><span class="co">#&gt; 10 natio… 2       7790… United… Olympi… opens… 4.33    1     TRUE    Olym… e1e8…</span></span>
-<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="co">#&gt; # … with 20 more rows, 1 more variable: geometry &lt;POINT [°]&gt;, and abbreviated</span></span>
-<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a><span class="co">#&gt; #   variable names ¹​protect_class, ²​operator, ³​`name:de`, ⁴​min_zoom,</span></span>
-<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="co">#&gt; #   ⁵​osm_relation</span></span></code></pre></div>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co">#&gt; The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co">#&gt; which was just loaded, will retire in October 2023.</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#&gt; Please refer to R-spatial evolution reports for details, especially</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">#&gt; https://r-spatial.org/r/2023/05/15/evolution4.html.</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co">#&gt; It may be desirable to make the sf package available;</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">#&gt; package maintainers should consider adding sf to Suggests:.</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co">#&gt; The sp package is now running under evolution status 2</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co">#&gt;      (status 2 uses the sf package in place of rgdal)</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co">#&gt; Registered S3 method overwritten by &#39;geojsonsf&#39;:</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co">#&gt;   method        from   </span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co">#&gt;   print.geojson geojson</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co">#&gt; Simple feature collection with 30 features and 11 fields</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co">#&gt; Geometry type: POINT</span></span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="co">#&gt; Dimension:     XY</span></span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="co">#&gt; Bounding box:  xmin: -123.536 ymin: 32.009 xmax: -112.58 ymax: 48.808</span></span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="co">#&gt; # A tibble: 30 × 12</span></span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a><span class="co">#&gt;    kind          protect_class area     operator `name:de` source min_zoom tier </span></span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;         &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;</span></span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="co">#&gt;  1 national_park 2             1377580… United … &lt;NA&gt;      opens… 5.58     1    </span></span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a><span class="co">#&gt;  2 national_park 2             2035390… United … &lt;NA&gt;      opens… 5.29     1    </span></span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="co">#&gt;  3 national_park 2             2132460… United … National… opens… 3.6      1    </span></span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a><span class="co">#&gt;  4 national_park 2             2543010… United … &lt;NA&gt;      opens… 5.13     1    </span></span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="co">#&gt;  5 national_park 2             2552470… United … Sequoia-… opens… 5.13     1    </span></span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a><span class="co">#&gt;  6 national_park 2             2740480… United … National… opens… 5.08     1    </span></span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="co">#&gt;  7 national_park 2             2812880… United … Kings-Ca… opens… 5.06     1    </span></span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="co">#&gt;  8 national_park 2             4671080… United … Joshua-T… opens… 4.7      1    </span></span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="co">#&gt;  9 national_park 2             4858760… United … Yosemite… opens… 4.67     1    </span></span>
+<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="co">#&gt; 10 national_park 2             7790180… United … Olympic-… opens… 4.33     1    </span></span>
+<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a><span class="co">#&gt; # ℹ 20 more rows</span></span>
+<span id="cb4-33"><a href="#cb4-33" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more variables: osm_relation &lt;chr&gt;, name &lt;chr&gt;, id &lt;chr&gt;,</span></span>
+<span id="cb4-34"><a href="#cb4-34" tabindex="-1"></a><span class="co">#&gt; #   geometry &lt;POINT [°]&gt;</span></span></code></pre></div>
 </div>
-<div id="sf-and-spatialdataframe-conversion" class="section level2">
-<h2><code>sf</code> and <code>Spatial*DataFrame</code> conversion</h2>
+<div id="sf-conversion" class="section level2">
+<h2><code>sf</code> conversion</h2>
 <p>Any object returned by a Mapzen service can be converted to the
-appropriate <code>Spatial*DataFrame</code> or <code>sf</code> object
-using the generics <code>as_sp</code> and <code>as_sf</code>, for easy
-interoperability with other packages. You can also convert most objects
-directly to data frames, allowing for use within tidy pipelines:</p>
+appropriate <code>sf</code> object using the generic <code>as_sf</code>,
+for easy interoperability with other packages. You can also convert most
+objects directly to data frames, allowing for use within tidy
+pipelines:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">as_sf</span>(oakland_public) <span class="sc">%&gt;%</span></span>
@@ -505,20 +520,19 @@ directly to data frames, allowing for use within tidy pipelines:</p>
 <span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt; Bounding box:  xmin: -122.2854 ymin: 37.73742 xmax: -122.1749 ymax: 37.84632</span></span>
 <span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
 <span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt; # A tibble: 25 × 6</span></span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co">#&gt;    name                 confi…¹ region local…² neigh…³             geometry</span></span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;                  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;            &lt;POINT [°]&gt;</span></span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">#&gt;  1 Oakland Public Libr…   0.926 Calif… Oakland Shafter (-122.2625 37.83824)</span></span>
-<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co">#&gt;  2 Oakland Public Libr…   0.926 Calif… Oakland Rockri…    (-122.2511 37.84)</span></span>
-<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="co">#&gt;  3 Lakeview Branch Oak…   0.664 Calif… Oakland &lt;NA&gt;     (-122.249 37.80919)</span></span>
-<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co">#&gt;  4 Golden Gate Branch …   0.663 Calif… Oakland Gaskill (-122.2822 37.83937)</span></span>
-<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="co">#&gt;  5 Brookfield Village …   0.663 Calif… Oakland South … (-122.1886 37.73742)</span></span>
-<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="co">#&gt;  6 West Oakland Branch…   0.663 Calif… Oakland Ralph … (-122.2854 37.81296)</span></span>
-<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="co">#&gt;  7 Elmhurst Branch Oak…   0.663 Calif… Oakland Webster (-122.1749 37.75154)</span></span>
-<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="co">#&gt;  8 Montclair Branch Oa…   0.663 Calif… Oakland Montcl… (-122.2141 37.83204)</span></span>
-<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="co">#&gt;  9 Main Branch Oakland…   0.663 Calif… Oakland Civic … (-122.2638 37.80101)</span></span>
-<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="co">#&gt; 10 Latin American Bran…   0.663 Calif… Oakland St. El… (-122.2225 37.78354)</span></span>
-<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a><span class="co">#&gt; # … with 15 more rows, and abbreviated variable names ¹​confidence, ²​locality,</span></span>
-<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a><span class="co">#&gt; #   ³​neighbourhood</span></span></code></pre></div>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co">#&gt;    name       confidence region locality neighbourhood             geometry</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;                  &lt;POINT [°]&gt;</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">#&gt;  1 Oakland P…      0.926 Calif… Oakland  Shafter       (-122.2625 37.83824)</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co">#&gt;  2 Oakland P…      0.926 Calif… Oakland  Rockridge        (-122.2511 37.84)</span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="co">#&gt;  3 Lakeview …      0.664 Calif… Oakland  &lt;NA&gt;           (-122.249 37.80919)</span></span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co">#&gt;  4 Golden Ga…      0.663 Calif… Oakland  Gaskill       (-122.2822 37.83937)</span></span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="co">#&gt;  5 Brookfiel…      0.663 Calif… Oakland  South Stoneh… (-122.1886 37.73742)</span></span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="co">#&gt;  6 West Oakl…      0.663 Calif… Oakland  Ralph Bunche  (-122.2854 37.81296)</span></span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="co">#&gt;  7 Elmhurst …      0.663 Calif… Oakland  Webster       (-122.1749 37.75154)</span></span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="co">#&gt;  8 Montclair…      0.663 Calif… Oakland  Montclair     (-122.2141 37.83204)</span></span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="co">#&gt;  9 Main Bran…      0.663 Calif… Oakland  Civic Center  (-122.2638 37.80101)</span></span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="co">#&gt; 10 Latin Ame…      0.663 Calif… Oakland  St. Elizabeth (-122.2225 37.78354)</span></span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a><span class="co">#&gt; # ℹ 15 more rows</span></span></code></pre></div>
 </div>
 <div id="accessor-methods" class="section level2">
 <h2>Accessor methods</h2>
