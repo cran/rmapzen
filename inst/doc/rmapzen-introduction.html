@@ -12,7 +12,7 @@
 
 <meta name="author" content="Tarak Shah" />
 
-<meta name="date" content="2023-08-07" />
+<meta name="date" content="2023-10-17" />
 
 <title>Introduction to rmapzen</title>
 
@@ -51,7 +51,7 @@ overflow: visible;
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -340,7 +340,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Introduction to rmapzen</h1>
 <h4 class="author">Tarak Shah</h4>
-<h4 class="date">2023-08-07</h4>
+<h4 class="date">2023-10-17</h4>
 
 
 
@@ -471,37 +471,35 @@ objects for further processing, using the generic function
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># points of interest</span></span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">as_sf</span>(ca_tiles<span class="sc">$</span>pois)</span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co">#&gt; The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,</span></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co">#&gt; which was just loaded, will retire in October 2023.</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co">#&gt; which was just loaded, were retired in October 2023.</span></span>
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#&gt; Please refer to R-spatial evolution reports for details, especially</span></span>
 <span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">#&gt; https://r-spatial.org/r/2023/05/15/evolution4.html.</span></span>
 <span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co">#&gt; It may be desirable to make the sf package available;</span></span>
 <span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">#&gt; package maintainers should consider adding sf to Suggests:.</span></span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co">#&gt; The sp package is now running under evolution status 2</span></span>
-<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co">#&gt;      (status 2 uses the sf package in place of rgdal)</span></span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co">#&gt; Registered S3 method overwritten by &#39;geojsonsf&#39;:</span></span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co">#&gt;   method        from   </span></span>
-<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co">#&gt;   print.geojson geojson</span></span>
-<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co">#&gt; Simple feature collection with 30 features and 11 fields</span></span>
-<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co">#&gt; Geometry type: POINT</span></span>
-<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="co">#&gt; Dimension:     XY</span></span>
-<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="co">#&gt; Bounding box:  xmin: -123.536 ymin: 32.009 xmax: -112.58 ymax: 48.808</span></span>
-<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
-<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="co">#&gt; # A tibble: 30 × 12</span></span>
-<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a><span class="co">#&gt;    kind          protect_class area     operator `name:de` source min_zoom tier </span></span>
-<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;         &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;</span></span>
-<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="co">#&gt;  1 national_park 2             1377580… United … &lt;NA&gt;      opens… 5.58     1    </span></span>
-<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a><span class="co">#&gt;  2 national_park 2             2035390… United … &lt;NA&gt;      opens… 5.29     1    </span></span>
-<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="co">#&gt;  3 national_park 2             2132460… United … National… opens… 3.6      1    </span></span>
-<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a><span class="co">#&gt;  4 national_park 2             2543010… United … &lt;NA&gt;      opens… 5.13     1    </span></span>
-<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="co">#&gt;  5 national_park 2             2552470… United … Sequoia-… opens… 5.13     1    </span></span>
-<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a><span class="co">#&gt;  6 national_park 2             2740480… United … National… opens… 5.08     1    </span></span>
-<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="co">#&gt;  7 national_park 2             2812880… United … Kings-Ca… opens… 5.06     1    </span></span>
-<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="co">#&gt;  8 national_park 2             4671080… United … Joshua-T… opens… 4.7      1    </span></span>
-<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="co">#&gt;  9 national_park 2             4858760… United … Yosemite… opens… 4.67     1    </span></span>
-<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="co">#&gt; 10 national_park 2             7790180… United … Olympic-… opens… 4.33     1    </span></span>
-<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a><span class="co">#&gt; # ℹ 20 more rows</span></span>
-<span id="cb4-33"><a href="#cb4-33" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more variables: osm_relation &lt;chr&gt;, name &lt;chr&gt;, id &lt;chr&gt;,</span></span>
-<span id="cb4-34"><a href="#cb4-34" tabindex="-1"></a><span class="co">#&gt; #   geometry &lt;POINT [°]&gt;</span></span></code></pre></div>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co">#&gt; Registered S3 method overwritten by &#39;geojsonsf&#39;:</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co">#&gt;   method        from   </span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co">#&gt;   print.geojson geojson</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co">#&gt; Simple feature collection with 30 features and 11 fields</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co">#&gt; Geometry type: POINT</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co">#&gt; Dimension:     XY</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co">#&gt; Bounding box:  xmin: -123.536 ymin: 32.009 xmax: -112.58 ymax: 48.808</span></span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="co">#&gt; # A tibble: 30 × 12</span></span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="co">#&gt;    kind          protect_class area     operator `name:de` source min_zoom tier </span></span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;         &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;</span></span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a><span class="co">#&gt;  1 national_park 2             1377580… United … &lt;NA&gt;      opens… 5.58     1    </span></span>
+<span id="cb4-21"><a href="#cb4-21" tabindex="-1"></a><span class="co">#&gt;  2 national_park 2             2035390… United … &lt;NA&gt;      opens… 5.29     1    </span></span>
+<span id="cb4-22"><a href="#cb4-22" tabindex="-1"></a><span class="co">#&gt;  3 national_park 2             2132460… United … National… opens… 3.6      1    </span></span>
+<span id="cb4-23"><a href="#cb4-23" tabindex="-1"></a><span class="co">#&gt;  4 national_park 2             2543010… United … &lt;NA&gt;      opens… 5.13     1    </span></span>
+<span id="cb4-24"><a href="#cb4-24" tabindex="-1"></a><span class="co">#&gt;  5 national_park 2             2552470… United … Sequoia-… opens… 5.13     1    </span></span>
+<span id="cb4-25"><a href="#cb4-25" tabindex="-1"></a><span class="co">#&gt;  6 national_park 2             2740480… United … National… opens… 5.08     1    </span></span>
+<span id="cb4-26"><a href="#cb4-26" tabindex="-1"></a><span class="co">#&gt;  7 national_park 2             2812880… United … Kings-Ca… opens… 5.06     1    </span></span>
+<span id="cb4-27"><a href="#cb4-27" tabindex="-1"></a><span class="co">#&gt;  8 national_park 2             4671080… United … Joshua-T… opens… 4.7      1    </span></span>
+<span id="cb4-28"><a href="#cb4-28" tabindex="-1"></a><span class="co">#&gt;  9 national_park 2             4858760… United … Yosemite… opens… 4.67     1    </span></span>
+<span id="cb4-29"><a href="#cb4-29" tabindex="-1"></a><span class="co">#&gt; 10 national_park 2             7790180… United … Olympic-… opens… 4.33     1    </span></span>
+<span id="cb4-30"><a href="#cb4-30" tabindex="-1"></a><span class="co">#&gt; # ℹ 20 more rows</span></span>
+<span id="cb4-31"><a href="#cb4-31" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more variables: osm_relation &lt;chr&gt;, name &lt;chr&gt;, id &lt;chr&gt;,</span></span>
+<span id="cb4-32"><a href="#cb4-32" tabindex="-1"></a><span class="co">#&gt; #   geometry &lt;POINT [°]&gt;</span></span></code></pre></div>
 </div>
 <div id="sf-conversion" class="section level2">
 <h2><code>sf</code> conversion</h2>

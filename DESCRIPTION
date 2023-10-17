@@ -1,7 +1,7 @@
 Package: rmapzen
 Type: Package
 Title: Client for 'Mapzen' and Related Map APIs
-Version: 0.5.0
+Version: 0.5.1
 Authors@R: c(
     person("Tarak", "Shah", email = "tarak.shah@gmail.com", role = c("aut", "cre")),
     person("Daniel","Possenriede", role = "ctb"))
@@ -24,8 +24,8 @@ BugReports: https://github.com/tarakc02/rmapzen/issues
 VignetteBuilder: knitr
 Encoding: UTF-8
 NeedsCompilation: no
-Packaged: 2023-08-07 18:04:39 UTC; tshah
+Packaged: 2023-10-17 16:45:39 UTC; tshah
 Author: Tarak Shah [aut, cre],
   Daniel Possenriede [ctb]
 Repository: CRAN
-Date/Publication: 2023-08-07 18:30:05 UTC
+Date/Publication: 2023-10-17 17:00:02 UTC

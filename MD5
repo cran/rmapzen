@@ -1,7 +1,7 @@
-c45505f97f63b7f7c5dc1f2f022139c1 *DESCRIPTION
+54f84ac8a5c2198adaf8fd0ef132cfcc *DESCRIPTION
 0dcc72e8b8541d0518394b9f2530d10f *LICENSE
 721d0202a1161beac879c11e7f922c6b *NAMESPACE
-c5e1853024ff3bee13c6839f8f5590ba *NEWS.md
+c92b1e57932ef6f736732b09aa1ef1f7 *NEWS.md
 a3d557c719bc5c88e2eafa257315ef9b *R/as-sf.R
 e6c436c12503c1088d3aefbe55133b99 *R/as-sp.R
 239559ab59405c0b41d4756fc2d642a1 *R/collapse-properties.R
@@ -23,8 +23,8 @@ e99b7debc9d0f8f29f8222c9ca9b4539 *R/mz-search.R
 c96ad2aa53f6c1199dcb60786f66f767 *R/mz-tile-coordinates.R
 de62e4f1705639cbf306807d70b1f0d2 *R/print-mapzen-geo-list.R
 e205aabe16091cdb183412e50897cf4d *R/print-vector-tiles.R
-6bc35bae86d660f34a75a1a95afb29be *R/providers.R
-05a591f7273123460048c56853049d7e *R/rmapzen.R
+f0a370f3426ff3521987b7bf0bc8f733 *R/providers.R
+a5cdcc3e924f10dbfc8d10102f5b0054 *R/rmapzen-package.R
 1ae5387d6546847e57c7df5f0663b4f8 *R/string-array.R
 17ed02a6055d49191d11139c766dc115 *R/structured-search.R
 377f1d10ff073bd58b937fc36a0cf8e5 *R/tidy.R
@@ -40,7 +40,7 @@ fe8ee8cae3154a259b9ecfc517bc3759 *data/marina_walks.rda
 317102ddd33e1e6d09b7eb3f651185d3 *data/oakland_public.rda
 ac1de8fb0198d909351b0a5924cad835 *inst/doc/rmapzen-introduction.R
 2454739fcda9677cea82ec56ffbb23af *inst/doc/rmapzen-introduction.Rmd
-b6657cc94e6bd207a1c9555819b9d202 *inst/doc/rmapzen-introduction.html
+c72e91f691e542f6165483ca47846182 *inst/doc/rmapzen-introduction.html
 cff6533ed4819f07ef160c7ac6c8e666 *man/as_sf.Rd
 6e276d3bd0cc92229873b26360e4e155 *man/ca_tiles.Rd
 7f69038410725a7992227c0e76ac1910 *man/costing_models.Rd
@@ -63,7 +63,7 @@ ed2b664af93c737d6b52dee40466bcd6 *man/mz_location.Rd
 b690e563ad73a42b283ccec0f0cab075 *man/mz_tile_coordinates.Rd
 bdc3760b991a36dbc781296c3f8b9237 *man/mz_vector_tiles.Rd
 6f79ce96ab637be00ffb0cbbbe4a4211 *man/oakland_public.Rd
-ee06a20e46b2b180160b646cd4b4606c *man/rmapzen.Rd
+bf5b72b0eec26c9100fb34a28adec2ff *man/rmapzen-package.Rd
 03c01b48d192d71d4c40a60ffd9503d8 *man/search.Rd
 96638defcbca6a69f810c3e7c5030304 *tests/testthat.R
 2ab88bbbfb597753b6bd6a21ba68fd62 *tests/testthat/helpers.R
